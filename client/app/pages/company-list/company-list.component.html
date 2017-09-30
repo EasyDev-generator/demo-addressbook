@@ -1,0 +1,57 @@
+<!-- TITLE -->
+<md-card class="mb-40">
+    <h1>CompanyList</h1>
+</md-card>
+
+<!-- SEARCH FORM -->
+<md-card>
+    
+    <div class="card-title">
+        <md-icon>search</md-icon>
+        Search
+    </div>
+        
+    <form name="form-search" class="container-fluid">
+
+        <div class="row">
+			
+                <div class="col-sm-6">
+                    <md-input-container class="full-width">
+                        <input mdInput type="text" placeholder="Name" [(ngModel)]="search.name" name="name" id="name">
+                    </md-input-container>
+                </div>
+        </div>
+
+    </form>
+</md-card>
+
+<!-- TABLE -->
+<table class="table table-hover mt-40">
+    <thead>
+        <tr>
+            <th>_id</th>
+            <th>name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of list | search: { 'name': search.name }">
+            <td><a [routerLink]="['/companys', item._id]">{{item._id}}</a></td>
+            <td>{{item.name }}</td>
+            <td>
+                <button md-icon-button (click)="openModal(item._id, modal)">
+                    <md-icon>delete</md-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+    <div class="no-result" *ngIf="(list | search: {  'name': search.name  }).length == 0">
+        No items found
+    </div>
+</table>
+
+<!-- BUTTON -->
+<button class="btn btn-primary pull-right mb-20" routerLink="/companys/new" md-fab color="primary">
+    <md-icon>add</md-icon>
+</button>
+
+<div class="clearfix"></div>

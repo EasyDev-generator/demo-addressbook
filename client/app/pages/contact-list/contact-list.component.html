@@ -1,0 +1,82 @@
+<!-- TITLE -->
+<md-card class="mb-40">
+    <h1>ContactList</h1>
+</md-card>
+
+<!-- SEARCH FORM -->
+<md-card>
+    
+    <div class="card-title">
+        <md-icon>search</md-icon>
+        Search
+    </div>
+        
+    <form name="form-search" class="container-fluid">
+
+        <div class="row">
+			
+                <div class="col-sm-6">
+                    <md-input-container class="full-width">
+                        <input mdInput type="date" placeholder="Birth_date" [(ngModel)]="search.birth_date" name="birth_date" id="birth_date">
+                    </md-input-container>
+                </div>
+                <div class="col-sm-6">
+                    <md-select placeholder="Gender" class="full-width" [(ngModel)]="search.gender" name="gender" id="gender">
+                        <md-option></md-option>
+                        <md-option value="F">F</md-option>
+                        <md-option value="M">M</md-option>
+                    </md-select>
+                </div>
+			
+                <div class="col-sm-6">
+                    <md-input-container class="full-width">
+                        <input mdInput type="text" placeholder="Name" [(ngModel)]="search.name" name="name" id="name">
+                    </md-input-container>
+                </div>
+			
+                <div class="col-sm-6">
+                    <md-input-container class="full-width">
+                        <input mdInput type="text" placeholder="Surname" [(ngModel)]="search.surname" name="surname" id="surname">
+                    </md-input-container>
+                </div>
+        </div>
+
+    </form>
+</md-card>
+
+<!-- TABLE -->
+<table class="table table-hover mt-40">
+    <thead>
+        <tr>
+            <th>_id</th>
+            <th>birth_date</th>
+            <th>gender</th>
+            <th>name</th>
+            <th>surname</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of list | search: { 'birth_date': search.birth_date, 'gender': search.gender, 'name': search.name, 'surname': search.surname }">
+            <td><a [routerLink]="['/contacts', item._id]">{{item._id}}</a></td>
+            <td>{{item.birth_date }}</td>
+            <td>{{item.gender }}</td>
+            <td>{{item.name }}</td>
+            <td>{{item.surname }}</td>
+            <td>
+                <button md-icon-button (click)="openModal(item._id, modal)">
+                    <md-icon>delete</md-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+    <div class="no-result" *ngIf="(list | search: {  'birth_date': search.birth_date ,  'gender': search.gender ,  'name': search.name ,  'surname': search.surname  }).length == 0">
+        No items found
+    </div>
+</table>
+
+<!-- BUTTON -->
+<button class="btn btn-primary pull-right mb-20" routerLink="/contacts/new" md-fab color="primary">
+    <md-icon>add</md-icon>
+</button>
+
+<div class="clearfix"></div>

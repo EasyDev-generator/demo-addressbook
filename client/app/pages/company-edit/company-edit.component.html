@@ -1,0 +1,37 @@
+<!-- TITLE -->
+<md-card class="mb-40">
+    <h1>CompanyEdit</h1>
+</md-card>
+
+<md-card>
+    <div class="card-title">
+        <md-icon>edit</md-icon>
+        Edit
+    </div>
+
+    <form #easyForm="ngForm" class="container-fluid">
+        
+        
+        <md-input-container class="full-width">
+            <input mdInput type="text" placeholder="Name" [(ngModel)]="item.name" name="name" id="name">
+        </md-input-container>
+        
+        <!-- RELATIONS -->
+        <h2 class="mb-20">Relations</h2>
+        
+        
+		<h2>External Relations</h2>
+			<h3>Contact</h3>
+			<md-list>
+                <md-list-item *ngFor="let item of externalContact"></md-list-item>
+            </md-list>
+
+
+        <!-- BUTTON BAR -->
+        <div class="mt-40">
+            <button md-raised-button color="primary" class="pull-right mr-5" (click)="save(easyForm.valid, item)">Save</button>
+            <button md-raised-button class="pull-right " (click)="goBack()">Back To List</button>
+        </div>
+    </form>
+
+</md-card>

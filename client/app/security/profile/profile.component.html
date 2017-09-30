@@ -1,0 +1,37 @@
+<!-- TITLE -->
+<md-card class="mb-40">
+    <h1>
+        <md-icon>person</md-icon>
+        My profile
+    </h1>
+</md-card>
+
+<md-card>
+    <form #easyForm="ngForm" class="container-fluid mt-20" *ngIf="user">
+        
+        <md-input-container class="full-width">
+            <input mdInput type="text" placeholder="Username" #username='ngModel' [(ngModel)]="user.username" name="username" id="username" disabled>
+        </md-input-container>
+
+        <md-input-container class="full-width">
+            <input mdInput type="text" placeholder="Name" #nome='ngModel' [(ngModel)]="user.name" name="name" id="name">
+        </md-input-container>
+
+        <md-input-container class="full-width">
+            <input mdInput type="text" placeholder="Surname" #surname='ngModel' [(ngModel)]="user.surname" name="surname" id="surname">
+        </md-input-container>
+
+        <md-input-container class="full-width mb-30">
+            <input mdInput type="text" placeholder="Mail" #mail='ngModel' [(ngModel)]="user.mail" name="mail" id="mail">
+        </md-input-container>
+
+        <!-- BUTTON BAR -->
+        <div class="mt-40">
+            <button md-raised-button (click)="openModal(modal)" color="accent">Change Password</button>
+            <button md-raised-button class="pull-right" color="primary" (click)="save(easyForm.valid)">Save</button>
+            <button md-button class="pull-right" routerLink="/home">Back To Home</button>
+        </div>
+
+    </form>
+</md-card>
+

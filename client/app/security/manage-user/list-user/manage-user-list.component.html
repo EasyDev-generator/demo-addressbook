@@ -1,0 +1,64 @@
+<!-- TITLE -->
+<md-card class="mb-40">
+    <h1>Manage User</h1>
+</md-card>
+
+<!-- SEARCH FORM -->
+<md-card class="mb-40">
+    <div class="card-title">
+        <md-icon>search</md-icon>
+        Search
+    </div>
+
+    <form #easyForm="ngForm" class="container-fluid">
+
+        <md-input-container class="full-width">
+            <input mdInput type="text" placeholder="Username" #username='ngModel' [(ngModel)]="search.username" name="username" id="username">
+        </md-input-container>
+
+        <md-input-container class="full-width">
+            <input mdInput type="text" placeholder="Name" #name='ngModel' [(ngModel)]="search.name" name="name" id="name">
+        </md-input-container>
+
+        <md-input-container class="full-width">
+            <input mdInput type="text" placeholder="Surname" #surname='ngModel' [(ngModel)]="search.surname" name="surname" id="surname">
+        </md-input-container>
+
+        <md-input-container class="full-width">
+            <input mdInput type="text" placeholder="Mail" #mail='ngModel' [(ngModel)]="search.mail" name="mail" id="mail">
+        </md-input-container>
+
+        <md-input-container class="full-width">
+            <input mdInput type="text" placeholder="Role" #role='ngModel' [(ngModel)]="search.role" name="role" id="role">
+        </md-input-container>
+    </form>
+
+</md-card>
+
+<!-- TABLE LIST -->
+<table class="table table-hover mt-40">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Mail</th>
+            <th>Roles</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users | search:{'username' : search.username, 'name' : search.name, 'surname' : search.surname, 'mail' : search.mail, 'roles' : search.role }">
+            <td><a [routerLink]="['/manage-users/', user._id]"></a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <md-chip-list class="">
+                    <md-chip *ngFor="let role of user.roles" selected="true" color="primary">
+                        
+                    </md-chip>
+                </md-chip-list>
+            </td>
+        </tr>
+    </tbody>
+</table>

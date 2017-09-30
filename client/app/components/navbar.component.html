@@ -1,0 +1,45 @@
+<md-toolbar color="primary">
+      
+    <div routerLink="/">Prova</div>
+    
+    <span class="spacer-half"></span>
+    <div class="flex" *ngIf="user">
+        <div routerLink="/home">Home</div>
+        <!-- START LINK MENU -->
+        <div>
+            <div routerLink="/companys">CompanyList</div>
+        </div>
+        <div>
+            <div routerLink="/contacts">ContactList</div>
+        </div>
+ <!-- END LINK MENU -->
+    </div>
+
+    <span class="spacer"></span>
+    <div *ngIf="user">
+        
+        <!-- MENU -->
+        <md-menu #appMenu="mdMenu" [overlapTrigger]="false"  xPosition="before">
+            <button md-menu-item routerLink="/profile">
+                <md-icon>person</md-icon>
+                Profile
+            </button>
+            <button md-menu-item routerLink="/manage-users" *ngIf="user.isAdmin()" >
+                <md-icon>group</md-icon>
+                Manage Users
+            </button>
+            <div class="divider"></div>
+            <button md-menu-item (click)='logout($event)'>
+                <md-icon>power_settings_new</md-icon>
+                Logout
+            </button>
+        </md-menu>
+            
+        <!-- MENU BUTTON -->
+        <button md-icon-button [mdMenuTriggerFor]="appMenu" class="menu-right">
+            Welcome 
+            <md-icon>expand_more</md-icon>
+        </button>
+    </div>
+
+</md-toolbar>

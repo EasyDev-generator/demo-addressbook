@@ -1,0 +1,49 @@
+<md-card class="col-sm-offset-3 col-sm-6 col-md-offset-2 col-md-8 login-box">        
+    <form name="form" (ngSubmit)="form.form.valid && login()" class="form-horizontal" #form="ngForm" novalidate>
+        
+        <h1 class="text-center mb-20">Welcome in Prova</h1>
+        
+        <!-- INFO BOX -->
+        <md-card class="bg-info mb-40 mt-20">
+            <div>
+                <strong>Default username:</strong> admin
+            </div>
+            <div>
+                <strong>Password:</strong> pass
+            </div>
+        </md-card>
+
+        <!-- INPUT CREDENTIALS  -->
+        
+        <md-input-container class="full-width">
+            <md-icon class="mr-10" mdPrefix>person</md-icon>
+            <input mdInput type="text" placeholder="Username" autofocus name="usernameForm" [(ngModel)]="username" required/>
+        </md-input-container>
+        
+        <md-input-container class="full-width">
+            <md-icon class="mr-10" mdPrefix>lock</md-icon>
+            <input mdInput type="password" placeholder="Password" name="password" [(ngModel)]="password" required/>
+        </md-input-container>
+
+        <!-- ERROR MESSAGE -->
+        <div class="clearfix"></div>
+        <md-card *ngIf="showError" class="bg-danger mt-10 mb-20">
+            Username or password not valid
+            <a class="close" (click)="closeError()" title="close">×</a>
+        </md-card>
+
+        <!-- REMEMBER ME -->
+        <div class="form-group mt-20">
+            <md-checkbox [(ngModel)]="remember" name="remember" class="mt-10 ml-10 mr-20 pull-right">
+                <label class="pull-right">Remember login</label>
+            </md-checkbox>
+        </div>
+
+        <!-- LOGIN BUTTON -->
+        <div class="clearfix"></div>
+        <button type="submit" class="pull-right" md-raised-button color="primary">Login</button>
+        <div class="clearfix"></div>
+
+
+    </form>
+</md-card>
