@@ -19,7 +19,7 @@ export class SecurityService {
      * Verify JWT token
      */
     verifyToken(token:string): Observable<User> {
-        return this.http.post(this.contextUrl + "verifyToken", {token: token})
+        return this.http.post(this.contextUrl + "/verifyToken", {token: token})
         .map(response => response.json() as User);
     }
 
@@ -28,7 +28,7 @@ export class SecurityService {
      */
     login(username: string, password:string): Observable<User> {
         return this.http
-            .post(this.contextUrl + "login", { username: username, password: password } )
+            .post(this.contextUrl + "/login", { username: username, password: password } )
             .map(response => response.json() as User);
     }
     
@@ -37,7 +37,7 @@ export class SecurityService {
      */
     changePassword(passwordNew:string, passwordOld:string): Observable<void> {
         return this.http
-            .post(this.contextUrl + 'changePassword' , {
+            .post(this.contextUrl + '/changePassword' , {
                 passwordNew: passwordNew, 
                 passwordOld: passwordOld 
             })
