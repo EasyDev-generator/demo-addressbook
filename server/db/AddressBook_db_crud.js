@@ -42,7 +42,7 @@ connectDB = function()  {
             if(req._parsedOriginalUrl) {
                 url = req._parsedOriginalUrl.path;
                 if(!url.startsWith('/api/') && url.indexOf('.') == -1) {
-                    res.status(200).sendFile(path.resolve(__dirname + '\\..\\..\\client\\dist\\index.html'));
+                    res.status(200).sendFile(path.resolve(__dirname + '//..//..//client//dist//index.html'));
                 } else {
                     next();
                 }
